@@ -23,6 +23,7 @@ GuySpeed = 5
 
 zombiePosx = 300
 zombiePosy = 300
+zombieSpeed = 10
 
 CopPosx = 100
 CopPosy = 100
@@ -42,6 +43,7 @@ while game:
     keys = key.get_pressed()
     if keys[K_LEFT] and GuyPosx > 0:
         GuyPosx -= GuySpeed
+        angle= 90
     if keys[K_RIGHT] and GuyPosx < SCREEN_WIDTH - GuySize[0]:
         GuyPosx += GuySpeed
     if keys[K_UP] and GuyPosy > 0:
@@ -49,12 +51,23 @@ while game:
     if keys[K_DOWN] and GuyPosy < SCREEN_HEIGHT - GuySize[1]:
         GuyPosy += GuySpeed
         
+    zombiePosx += zombieSpeed
+    if zombiePosx <=0 or zombiePosx >= SCREEN_WIDTH - 150:
+        zombieSpeed *= -1
+
+
 
     window.blit(background, (0, 0))
     window.blit(Guy, (GuyPosx, GuyPosy))
     window.blit(Cop, (CopPosx, CopPosy))
     window.blit(zombie, (zombiePosx, zombiePosy))
+    
     # add the obstacles
+
+
+
+
+
 
     display.update()
 
